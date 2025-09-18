@@ -1,29 +1,31 @@
-function mergeSort(a){
-    let leftHalf = [];
-    let rightHalf = [];
-    let newLeftHalf = [];
-    let NewRightHalf = [];
-    let answer = [];
+function mergeSort(array) {
 
-    if( a.length == 1 )
-        {return a} 
-
-    leftHalf = a.slice(0, Math.floor(a.length / 2))
-    rightHalf = a.slice(Math.floor(a.length /2))
-    newLeftHalf = mergeSort(leftHalf);
-    NewRightHalf = mergeSort(rightHalf);
+    if (array.length <= 1) return array;
 
 
-    while(newLeftHalf.length || NewRightHalf.length){
-        if(NewRightHalf[0] < newLeftHalf[0]){
-            answer.push(NewRightHalf.shift())
-        } else { 
-            answer.push(newLeftHalf.shift())
-         }
+    const mid = Math.floor(array.length / 2);
+    const leftHalf = array.slice(0, mid);
+    const rightHalf = array.slice(mid);
+
+
+    const sortedLeft = mergeSort(leftHalf);
+    const sortedRight = mergeSort(rightHalf);
+
+
+    const merged = [];
+    let i = 0, j = 0;
+
+    while (i < sortedLeft.length && j < sortedRight.length) {
+        if (sortedRight[j] < sortedLeft[i]) {
+            merged.push(sortedRight[j]);
+            j++;
+        } else {
+            merged.push(sortedLeft[i]);
+            i++;
+        }
     }
 
-    return answer.concat(newLeftHalf).concat(NewRightHalf);
-
+    return merged.concat(sortedLeft.slice(i)).concat(sortedRight.slice(j));
 }
 
 export {

@@ -1,5 +1,3 @@
-# CLI-app-template
-
 # Fibonacci and Merge Sort Project
 
 This project demonstrates **Fibonacci sequence generation** and **Merge Sort** in JavaScript, including both iterative and recursive approaches for Fibonacci numbers.
